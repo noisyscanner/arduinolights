@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <title>Lights</title>
+</head>
+
+<body>
+  <h1>Lights</h1>
+  <dl>
+    <dt data-id="2">Bed</dt>
+    <dd data-id="2"><button>off</button></dd>
+
+    <dt data-id="7">TV</dt>
+    <dd data-id="7"><button>off</button></dd>
+  </dl>
+
+  <button data-refresh>Refresh</button>
+
+  <script>
+    const send = body => fetch('/', { method: 'POST', body, headers: { 'Content-Type': 'text/plain' } }).then(res => res.text())
+
+    const refresh = () => send('?').then(statuses =>
+      statuses
+        .split('\n')
+        .map(s => s.split(' '))
+        .forEach(([pin, status]) => {
+          const btn = document.querySelector(`dd[data-id="${pin}"] button`)
+          btn.innerText = status
+        })
+    )
+
+    document.querySelector('[data-refresh]').addEventListener('click', refresh)
+
+    const dds = document.querySelectorAll('dd')
+    dds.forEach(dd => dd.querySelector('button').addEventListener('click', async ({ target }) => {
+      const pin = dd.dataset.id
+      const action = target.innerText === 'on' ? 'off' : 'on'
+      const result = await send(`${pin} ${action}`)
+      if (result === 'OK') {
+        target.innerText = action
+      }
+    }))
+
+    refresh()
+  </script>
+</body>
+
+</html>

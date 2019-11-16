@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+LIGHT_IP=192.168.1.120
+LIGHT_PORT=420
+
+alias tvoff="bash -c \"echo -en '\x07\x01' > /dev/udp/$LIGHT_IP/$LIGHT_PORT\""
+alias tvon="bash -c \"echo -en '\x07\x02' > /dev/udp/$LIGHT_IP/$LIGHT_PORT\""
+alias bedoff="bash -c \"echo -en '\x02\x01' > /dev/udp/$LIGHT_IP/$LIGHT_PORT\""
+alias bedon="bash -c \"echo -en '\x02\x02' > /dev/udp/$LIGHT_IP/$LIGHT_PORT\""
+alias bed="echo -en '\x02\x00' | nc -u $LIGHT_IP $LIGHT_PORT"
+alias tv="echo -en '\x07\x00' | nc -u $LIGHT_IP $LIGHT_PORT"

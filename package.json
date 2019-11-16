@@ -1,0 +1,21 @@
+{
+  "name": "nodelights",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon --experimental-modules index.mjs"
+  },
+  "author": "Brad Reed <brad@bradreed.co.uk>",
+  "license": "ISC",
+  "dependencies": {
+    "koa": "^2.11.0",
+    "koa-bodyparser": "^4.2.1",
+    "koa-static": "^5.0.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.19.4",
+    "standard": "^14.3.1"
+  }
+}

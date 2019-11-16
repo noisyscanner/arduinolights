@@ -1,0 +1,9 @@
+export const TV = 7
+export const BED = 2
+export const ON = 'on'
+export const OFF = 'off'
+export const re = /^(\d) (on|off|\?)$/
+export const mnere = /^(tv|bed|\d) (on|off|\?)$/
+export const map = { tv: TV, bed: BED }
+export const CONTROLLER_IP = process.env.LIGHT_IP || '192.168.1.120'
+export const CONTROLLER_PORT = parseInt(process.env.LIGHT_PORT || 420, 10)
